@@ -1,0 +1,39 @@
+try{
+Class.forName("com.mysql.jdbc.Driver");
+String conURL = "jdbc:mysql://localhost/user?"
+         + "user=root&amp;password=";
+java.sql.Connection con = DriverManager.getConnection(conURL);
+    //MyConnection();
+      // PreparedStatement ps;
+        //ResultSet rs;
+        String uname1 = uname.getText();
+        String pass1 = String.valueOf(upass.getText());
+        
+        //String query = "SELECT * FROM `the_app_users` WHERE `u_uname` =? AND `u_pass` =?";
+        java.sql.Statement stmt = con.createStatement();
+String sql = "SELECT * FROM `tbluser` WHERE `u_uname` = '"+uname1+"' AND `u_pass` ='"+pass1+"'";
+stmt.execute(sql);
+ResultSet rs = stmt.executeQuery(sql);
+        
+         // java.sql.Statement stmt = con.createStatement();
+            
+ 
+            
+           // rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                JOptionPane.showMessageDialog(null, "Login Successfull", "Login Success", 1);
+                    //home mf = new home();
+                    new home().setVisible(true);
+                    this.dispose();
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+                }
+            
+        }catch(SQLException x){
+   x.printStackTrace();
+}       catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
